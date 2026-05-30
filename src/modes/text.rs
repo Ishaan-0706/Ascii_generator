@@ -46,7 +46,7 @@ pub fn render_banner(text: &str, block: char, scale: usize) -> Vec<String> {
                 row_str.push(' ');
             }
         }
-    } 
+    }
 
     rows
 }
@@ -65,9 +65,11 @@ mod tests {
     fn banner_has_same_width() {
         let rows = render_banner("Hello", '█', 1);
         let width: Vec<usize> = rows.iter().map(|s| s.len()).collect();
-        // ✅ Bug 3 fixed: assert! not assert_eq!
-        assert!(width.windows(2).all(|w| w[0] == w[1]),
-            "Row widths differ: {:?}", width);
+        assert!(
+            width.windows(2).all(|w| w[0] == w[1]),
+            "Row widths differ: {:?}",
+            width
+        );
     }
 
     #[test]
